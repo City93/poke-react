@@ -11,13 +11,18 @@ const Main = () => {
 
   useEffect(() => {
     const getPokemons = async (pokemonName) =>{
-      const data = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`)
-      const pokeInfo = {
-        name: data.data.name,
-        img: data.data.sprites.front_default
+      
+      if(pokemonName) try{
+        const data = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`)
+        const pokeInfo = {
+          name: data.data.name,
+          img: data.data.sprites.versions["generation-v"]["black-white"].animated.front_default
+        }
+        //console.log(pokeInfo)
+         changePokemon([...pokemon,pokeInfo])
+      } catch (err){
+        alert('try again')
       }
-      //console.log(pokeInfo)
-      changePokemon([...pokemon,pokeInfo])
     }
     getPokemons(input);
 }, [input]);

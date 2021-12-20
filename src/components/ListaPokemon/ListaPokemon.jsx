@@ -3,7 +3,7 @@ import Card from '../Main/Card/Card'
 
 const ListaPokemon = (props) => {
 
-  console.log(props.pokeInfo)
+  //console.log(props.pokeInfo)
 
   const paintPokemon = () =>{
    return props.pokeInfo.map((pokemon,i)=><Card pokeInfo={pokemon} key={i}/>)
