@@ -17,7 +17,7 @@ const Main = () => {
   useEffect(() => {
     const getPokemons = async (pokemonName) =>{
       
-      if(value && !(pokemon.find(element => element.name === pokemonName))) try{
+      if(value && !(pokemon.find(element => element.name === pokemonName.toLowerCase()))) try{
         const data = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`)
         const pokeInfo = {
           name: data.data.name,
@@ -35,12 +35,15 @@ const Main = () => {
   const handleChange = (name) =>{
     changeInput(name)
   }
+  const newPokemon = (pokeInfo) =>{
+    changePokemon([...pokemon,pokeInfo])
+  }
 
 
   return <main className="main">
     <Routes>
       <Route path="/" element={<ListaPokemon pokeInfo={pokemon}/>} exact />
-      <Route path="/new" element={<NewPokemon/>} />
+      <Route path="/new" element={<NewPokemon newPokemon = {(e) =>newPokemon(e)}/>} />
       <Route path="/search" element={<Form lastPokemon={lastPokemon} handleChange = {(e) =>handleChange(e)}/>} />
     </Routes>
   </main>;
