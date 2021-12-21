@@ -1,17 +1,16 @@
-import React, {useState} from "react";
+import React from "react";
+import Card from '../Card/Card'
 
 const Form = (props) => {
-
   const handleSubmit = (e) =>{
     e.preventDefault();
-    props.handleChange(e.target.pokemonName.value)
-    document.getElementById('pokemonForm').reset()
+    props.handleChange(e.target.value)
   }
-  return <form onSubmit={handleSubmit} id="pokemonForm">
+  return <form id="pokemonForm">
     <label>¿Cuál es tu pokemon favorito? <br/>
-    <input type="text" name="pokemonName" id="pokemonName" label="pokemon" />
-    <button type="submit">Buscar</button>
+    <input type="text" name="pokemonName" id="pokemonName" label="pokemon" onChange={handleSubmit} className="pokemonName"/>
     </label>
+    <Card pokeInfo={props.lastPokemon}/>
   </form>;
 };
 
