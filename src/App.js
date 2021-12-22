@@ -24,10 +24,14 @@ function App() {
       
       if(value && !(pokemon.find(element => element.name === pokemonName.toLowerCase()))) try{
         const data = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`)
+        console.log(data)
         const pokeInfo = {
           name: data.data.name,
-          img: data.data.sprites.versions["generation-v"]["black-white"].animated.front_default || data.data.sprites.front_default
+          img: data.data.sprites.versions["generation-v"]["black-white"].animated.front_default || data.data.sprites.front_default,
+          type1: data.data.types[0].type.name,
+          type2: data.data.types[1]?data.data.types[1].type.name : ""
         }
+        console.log(pokeInfo)
          changePokemon([...pokemon,pokeInfo])
          changeLastPokemon(pokeInfo)
       } catch (err){

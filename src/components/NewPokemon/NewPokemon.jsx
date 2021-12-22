@@ -14,7 +14,7 @@ const NewPokemon = (props) => {
   <input required placeholder="Id Pokemon"{...register("id")} /><hr/>
   <input minLength='3' required placeholder="Nombre Pokemon"{...register("name")} /><hr/>
   <input required placeholder="Url imagen Pokemon"{...register("img")} /><hr/>
-  <select required {...register("type1")}>
+  <select required {...register("type1")} value='bicho'>
         <option value="bicho">Bicho</option>
         <option value="siniestro">Siniestro</option>
         <option value="dragon">Dragon</option>
@@ -34,9 +34,9 @@ const NewPokemon = (props) => {
         <option value="acero">Acero</option>
         <option value="agua">Agua</option>
   </select>
-  <select {...register("type2")}>
+  <select {...register("type2")} value=''>
   <option placeholder="Tipo 2" value="bicho">Bicho</option>
-        <option value="" defaultValue>Tipo 2</option>
+        <option value="" disabled hidden></option>
         <option value="siniestro">Siniestro</option>
         <option value="dragon">Dragon</option>
         <option value="electrico">Electrico</option>
