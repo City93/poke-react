@@ -1,44 +1,16 @@
-import React, {useState, useEffect} from "react";
+import React, {useContext} from "react";
 import Form from "./Form/Form";
 import ListaPokemon from '../ListaPokemon/ListaPokemon'
-import { useDebounce } from "use-debounce";
+
+import { pokeContext } from "../../context/pokeContext";
 
 import {Route, Routes} from 'react-router-dom';
 
-import axios from 'axios'
 import NewPokemon from "../NewPokemon/NewPokemon";
 
 const Main = () => {
-  const [input, changeInput] = useState('');
-  const [pokemon, changePokemon] = useState([])
-  const [lastPokemon, changeLastPokemon] = useState({})
-  const [value] = useDebounce(input, 1000)
 
-  useEffect(() => {
-    const getPokemons = async (pokemonName) =>{
-      
-      if(value && !(pokemon.find(element => element.name === pokemonName.toLowerCase()))) try{
-        const data = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemonName.toLowerCase()}`)
-        const pokeInfo = {
-          name: data.data.name,
-          img: data.data.sprites.versions["generation-v"]["black-white"].animated.front_default || data.data.sprites.front_default
-        }
-         changePokemon([...pokemon,pokeInfo])
-         changeLastPokemon(pokeInfo)
-      } catch (err){
-        alert('try again')
-      }
-    }
-    getPokemons(value);
-}, [value]);
-
-  const handleChange = (name) =>{
-    changeInput(name)
-  }
-  const newPokemon = (pokeInfo) =>{
-    changePokemon([...pokemon,pokeInfo])
-  }
-
+  const {pokemon, lastPokemon, newPokemon, handleChange} = useContext(pokeContext)
 
   return <main className="main">
     <Routes>
