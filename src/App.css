@@ -1,11 +1,15 @@
 *{
-  background-color: aliceblue;
   margin-top: 0;
 }
 
 .App {
   text-align: center;
-  
+
+  background-image: url('../src/assets/img/fondo_pokemon_shaded.png');
+  background-size: 15%;
+  background-repeat: repeat;
+  height: 100vh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 .App-logo {
